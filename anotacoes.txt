@@ -1,0 +1,75 @@
+SPA (Single Page Application) || HTML vazio pois é inserido por meio do JavaScript
+O conteúdo é inserido através do JavaScript por meio do React, não contendo nada no index.html do que é visto no site
+
+
+
+Vantagens de uso de SPAs = 
+    - Velocidade, ja que o HTML não possui conteúdo, tornando algo mais rápido;
+
+
+
+State (Estado) é uma variável que você pode alterar no React que faz com que o COMPONENTE seja RENDERIZADO novamente, seja executada novamente. É útil caso vc queira fazer algo com a resposta da interação do usuário
+
+STATE É ALGO IMPORTANTE
+
+
+
+<div className="w-screen h-screen bg-slate-500 flex justify-center p-6"> 
+w-screen = width screen
+h-screen = height screen
+bg-slate-500 = cor do background cinza
+flex = display flex
+justify-center = centralizar tudo
+p-6 = padding de 24 pixels
+
+
+
+<div className="w-[500px] text-center">
+w-[500px] = width de 500 pixels
+text-center = centralizar o texto
+
+
+
+<Tasks tasks={tasks}/>
+A prop tasks vai ser o state {tasks} (id, title, etc.)
+
+
+
+function Tasks(props) {
+    return (
+        <ul className="space-y-4">
+            {props.tasks.map((task) => (
+                <li key={task.id} className="bg-slate-400 text-white p-2 rounded-md">{task.title}</li>
+            ))}
+        </ul>
+    );
+}
+
+RETORNA EM FORMATO DE LISTA A 'TITLE' DE CADA TASK UTILIZANDO O MAP PARA FAZER A VARREDURA E RETORNAR
+A KEY É USADO PARA QUE HAJA UMA MELHORA NA PERFOMANCE PENSANDO MAIS A FRENTE, A KEY TEM QUE SER ALGO UNICO PARA IDENTIFICAÇÃO
+
+
+
+function onTaskClick(taskId) {
+  const newTasks = tasks.map(task => { || VARREDURA PARA PODER MARCAR A TASK PELO ID SETADO PELO COMANDO KEY
+    // PRECISO ATUALIZAR ESSA TAREFA
+    if (task.id == taskId) { || SE O ID DA TAREFA ATUAL DA ITERAÇÃO FOR O MESMO ID DA TAREFA CLICADA, ENTRA NO IF
+      return {...task, isCompleted: !task.isCompleted} || LE TODAS AS PROPRIEDADES DA TASK E ALTERA O VALOR DO isCompleted PARA O VALOR QUE NÃO ESTÁ SELECIONADO, (POSITIVO PARA NEGATIVO) (NEGATIVO PARA POSITIVO)
+    }
+    return task;
+  })
+}
+FUNÇÃO PARA ALTERNAR A TASK ENTRE FEITO E NÃO FEITO
+
+
+
+// Pegará as informações através da URL e usará elas para retornar algo ao usuário 
+function TaskPage() {
+    const [searchParams] = useSearchParams(); || QUERY PARA OBTER AS INFORMAÇÕES DE TITLE E DESCRIPTION
+    const title = searchParams.get("title"); 
+    const description = searchParams.get("description")
+    return (<div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
+        <h1>{title}</h1> || ESTÁ MOSTRANDO O CONTEUDO 'TITLE' QUE ESTÁ NA URL
+        <p>{description}</p> || ESTÁ MOSTRANDO O CONTEUDO 'DESCRIPTION' QUE ESTÁ NA URL
+    </div>);
+}
