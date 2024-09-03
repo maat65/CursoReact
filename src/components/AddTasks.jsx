@@ -14,18 +14,18 @@ function AddTasks({ onAddTaskSubmit }) {
         </input>
         <input 
             type="text" 
-            placeholder="Digite o Titulo da tarefa" 
+            placeholder="Digite a Descrição da tarefa" 
             className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
             value = {description}
             onChange={(event) => setDescription(event.target.value)}>
         </input>
         <button onClick={() => {
             // VERIFICA SE TENTOU DAR SUBMIT COM ALGUM CAMPO EM BRANCO
-            if(!title.trim() || !description.trim())
-                return alert("Preencha os campos para adicionar!")
+            if(!title.trim() || !description.trim()){
+                return alert("Preencha os campos para adicionar!")}
             onAddTaskSubmit(title, description);
-            setTitle[""];
-            setDescription[""];
+            setTitle("");
+            setDescription("");
         }} className="border bg-slate-500 px-4 py-2 rounded-md ">Adicionar</button>
     </div>
 )}

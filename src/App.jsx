@@ -4,25 +4,7 @@ import Tasks from "./components/Tasks";
 import {v4} from 'uuid';
 
 function App() {
-  const [tasks, setTasks] = useState([{
-    id: 1,
-    title: "Arrumar shows site",
-    description: "Arrumar e deletar shows que já aconteceram",
-    isCompleted: false
-  },
-  {
-    id: 2,
-    title: "Estudar programação",
-    description: "Realizar os cursos",
-    isCompleted: false
-  },
-  {
-    id: 3,
-    title: "Verificar ingressos",
-    description: "Verificar banco de dados sobre tal cliente",
-    isCompleted: false
-  },
-]);
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []);
 
 function onTaskClick(taskId) {
   const newTasks = tasks.map(task => {

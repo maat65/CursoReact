@@ -81,3 +81,26 @@ useEffect(() => {}, []); || RECEBE COMO PARAMETRO UMA FUNÇÃO E UMA LISTA, ONDE
 useEffect(() => {
   localStorage.setItem("tasks", JSON.stringify(tasks))
 }, [tasks]); || "TASKS" O NOME QUE É USADO PARA IDENTIFICAR O DADO QUE ESTÁ SENDO ARMAZENADO, E O SEGUNDO PARÂMETRO É O QUE QUER ADICIONAR, USANDO O JSON.STRIGIFY ELE CONVERTE O OBJETO TASKS PARA UMA STRING
+
+
+
+function App() {
+  const [tasks, setTasks] = useState([{
+    id: 1,
+    title: "Arrumar shows site",
+    description: "Arrumar e deletar shows que já aconteceram",
+    isCompleted: false
+  },
+  {
+    id: 2,
+    title: "Estudar programação",
+    description: "Realizar os cursos",
+    isCompleted: false
+  },
+  {
+    id: 3,
+    title: "Verificar ingressos",
+    description: "Verificar banco de dados sobre tal cliente",
+    isCompleted: false
+  },
+]);
