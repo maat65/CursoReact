@@ -25,7 +25,7 @@ function AddTasks({ onAddTaskSubmit }) {
             onAddTaskSubmit(title, description);
             setTitle("");
             setDescription("");
-        }} className="border bg-slate-500 px-4 py-2 rounded-md ">Adicionar</button>
+        }} className="bg-slate-500 px-4 py-2 rounded-md font-medium">Adicionar</button>
     </div>
 )}
 
