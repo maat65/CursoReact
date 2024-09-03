@@ -56,7 +56,7 @@ function App() {
     }
     // É POSSIVEL CHAMAR UMA API PARA PEGAR AS TAREFAS
     // fetchTasks();
-  });
+  }, []);
 
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center p-6"> 
