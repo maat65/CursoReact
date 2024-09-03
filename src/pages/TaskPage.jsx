@@ -23,7 +23,6 @@ function TaskPage() {
                     Detalhes da tarefa
                 </h1>
             </div>
-            
             <div className="space-y-2 p-6 bg-slate-200 rounded-md gap-2 flex flex-col">
                 <h2 className="text-black font-bold text-center">{title}</h2>
                 <p>{description}</p>

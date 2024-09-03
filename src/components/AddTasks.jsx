@@ -1,24 +1,23 @@
 import { useState } from "react";
+import Input from "./Input";
 
 function AddTasks({ onAddTaskSubmit }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     return (
     <div className="space-y-4 p-6 bg-slate-200 rounded-md shadow gap-2 flex flex-col">
-        <input 
+        <Input
             type="text" 
             placeholder="Digite o Titulo da tarefa" 
-            className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
             value = {title}
-            onChange={(event) => setTitle(event.target.value)}>
-        </input>
-        <input 
+            onChange={(event) => setTitle(event.target.value)}
+        />
+        <Input 
             type="text" 
             placeholder="Digite a Descrição da tarefa" 
-            className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
             value = {description}
-            onChange={(event) => setDescription(event.target.value)}>
-        </input>
+            onChange={(event) => setDescription(event.target.value)}
+        />
         <button onClick={() => {
             // VERIFICA SE TENTOU DAR SUBMIT COM ALGUM CAMPO EM BRANCO
             if(!title.trim() || !description.trim()){

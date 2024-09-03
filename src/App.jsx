@@ -6,35 +6,56 @@ import {v4} from 'uuid';
 function App() {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []);
 
-function onTaskClick(taskId) {
-  const newTasks = tasks.map(task => {
-    // PRECISO ATUALIZAR ESSA TAREFA
-    if (task.id == taskId) { 
-      return {...task, isCompleted: !task.isCompleted}
+  function onTaskClick(taskId) {
+    const newTasks = tasks.map(task => {
+      // PRECISO ATUALIZAR ESSA TAREFA
+      if (task.id == taskId) { 
+        return {...task, isCompleted: !task.isCompleted}
+      }
+      return task;
+    });
+    setTasks(newTasks);
+  }
+
+  function onDeleteTaskClick(taskId) {
+    const newTasks = tasks.filter(task => task.id != taskId)
+    setTasks(newTasks);
+  }
+
+  function onAddTaskSubmit(title, description) {
+      const newTask = {
+        id: v4(),
+        title: title,
+        description: description,
+        isCompleted: false,
+      }
+      setTasks([...tasks, newTask]);
+  }
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  }, [tasks]);
+
+  useEffect(() => {
+    async function fetchTasks() {
+      // CHAMAR API
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=10', 
+        {
+        method: 'GET'
+        });
+      
+      // PEGAR OS DADOS QUE ELA RETORNA TRANSFORMANDO EM JSON
+      const data = await response.json();
+
+      // PRINTAR NO CONSOLE PARA TESTE
+      console.log(data);
+
+      // ARMAZENAR OS DADOS NO STATE
+      setTasks(data);
     }
-    return task;
+    // É POSSIVEL CHAMAR UMA API PARA PEGAR AS TAREFAS
+    // fetchTasks();
   });
-  setTasks(newTasks);
-}
-
-function onDeleteTaskClick(taskId) {
-  const newTasks = tasks.filter(task => task.id != taskId)
-  setTasks(newTasks);
-}
-
-function onAddTaskSubmit(title, description) {
-    const newTask = {
-      id: v4(),
-      title: title,
-      description: description,
-      isCompleted: false,
-    }
-    setTasks([...tasks, newTask]);
-}
-
-useEffect(() => {
-  localStorage.setItem("tasks", JSON.stringify(tasks))
-}, [tasks]);
 
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center p-6"> 
